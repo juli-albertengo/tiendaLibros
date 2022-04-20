@@ -2,11 +2,7 @@ import React from 'react';
 import {View, Text, Image, Button } from 'react-native';
 import { styles } from './styles';
 
-const Book = ({ navigation, book}) => {
-
-    const selectBook = () => {
-        console.log(book);
-    };
+const Book = ({book, handleSelection}) => {
 
     return (
         <View style={styles.container}>
@@ -19,7 +15,7 @@ const Book = ({ navigation, book}) => {
                 <View style={styles.bookContainer}>
                     <Button
                     style={styles.button}
-                    onPress={selectBook}
+                    onPress={handleSelection()}
                     title=" + Info"
                     color="#17A2BB"
                     />

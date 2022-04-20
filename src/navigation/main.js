@@ -1,30 +1,29 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Text } from 'react-native';
+import IonicIcons from 'react-native-vector-icons/Ionicons';
 
 import AboutUs from '../screens/aboutUs/index';
-import Books from '../screens/books/index';
-import Cart from '../screens/cart/index';
+import ShopNavigator from './shop';
+import CartNavigator from './cart';
 
 
-const Tab = createBottomTabNavigator();
+const TabStack = createBottomTabNavigator();
 
 const MainNavigator = () => {
     return (
-        <Tab.Navigator
+        <TabStack.Navigator
         initialRouteName="Books"
         screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
               let iconName;
-              if (route.name === 'Books') {
-                iconName = focused ? '' : '';
-              } else if (route.name === 'About Us') {
-                iconName = focused ? '' : '';
-              } else if (route.name === 'My Cart') {
-                iconName = focused ? '' : '';
+              if (route.name === 'About us') {
+                iconName = focused ? 'home-outline' : 'home';
+              } else if (route.name === 'Books') {
+                iconName = focused ? 'book-outline' : 'book';
+              } else if (route.name === 'Cart') {
+                iconName = focused ? 'cart-outline' : 'cart';
               }
-              // You can return any component that you like here!
-              return <Text icon={iconName} size={size} color={color} />;
+              return <IonicIcons name={iconName} size={size} color={color} />;
             },
           })}
           tabBarOptions={{
@@ -34,24 +33,21 @@ const MainNavigator = () => {
             style: { padding: 10, height: 70},
           }}
         >
-            <Tab.Screen
+            <TabStack.Screen
                 name="About us"
                 component={AboutUs}
             />
-            <Tab.Screen
+            <TabStack.Screen
                 name="Books"
-                component={Books}
+                component={ShopNavigator}
             />
-            <Tab.Screen
-                name="My Cart"
-                component={Cart}
+            <TabStack.Screen
+                name="Cart"
+                component={CartNavigator}
             />
-            <Tab.Screen
-                name="SingleBook"
-                component={Cart}
-            />
-        </Tab.Navigator>
+        </TabStack.Navigator>
     );
 };
 
 export default MainNavigator;
+
